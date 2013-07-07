@@ -12,6 +12,7 @@ SampleApp::Application.routes.draw do
 # http://stackoverflow.com/questions/2472393/rails-new-vs-create
 
   resources :sessions, only:[:new, :create, :destroy]
+  resources :microposts, only:[:create, :destroy]
   
   root to: 'static_pages#home'
 
