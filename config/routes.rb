@@ -1,5 +1,17 @@
 SampleApp::Application.routes.draw do
-  resources :users
+  get "relationships/create"
+
+  get "relationships/destroy"
+
+  get "relationships_controller/create"
+
+  get "relationships_controller/destroy"
+
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
 
 
 # Within Rails' implementation of REST new and create are treated differently.
@@ -13,6 +25,7 @@ SampleApp::Application.routes.draw do
 
   resources :sessions, only:[:new, :create, :destroy]
   resources :microposts, only:[:create, :destroy]
+  resources :relationships, only:[:create, :destroy]
   
   root to: 'static_pages#home'
 
